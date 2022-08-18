@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+<link href="{{ url_for('static',filename = 'css/bootstrap.min.css')  }}" rel="stylesheet">
+<title>Movie Review System</title>
+<meta charset="UTF-8">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> 
+<nav style="width: 100%;" class="myReference">
+<a class="  navbar-brand" href="#" style="margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-botttom: 0px;">
+    <img style="max-height: auto; width:100%;" src="{{ url_for('static',filename = 'image/PIET logo with tagline.jpg')  }}" 
+    class="img-responsive" style="margin-top:0px;style=width: auto; height: auto; min-width:100%; min-height: auto;">
+ <ul class='nav-links'>
+ <li><a class="active" href="/aboutme">About Me</a></li>
+</ul>
+<style>
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
+h1 {text-align: center;}
+h2 {text-align: center;}
+h3 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
+
+<style>
+.myDiv {
+  border: 10px outset #577ac0b5;
+  background-color: #917a3778;    
+  text-align: center;
+}
+
+.my_Div {
+  border: 10px outset #7bf797;
+  background-color: #da4f8e;    
+  text-align: center;
+}
+
+
+.myReference {
+  border: 10px outset #f7f37bc2;
+  background-color: #210b0bc7;    
+  text-align: center;
+}
+
+.button {
+  background-color: lightblue;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+.button1 {
+  background-color: white; 
+  color: black; 
+  border: 5px solid #7e50c4db;
+}
+
+.button1:hover {
+  background-color: #f64949ab;
+  color: aqua;
+}
+
+.button2 {
+  background-color: white; 
+  color: black; 
+  border: 5px solid #bd4d73c9;
+}
+
+.button2:hover {
+  background-color: #0eab60;
+  color: aqua;
+}
+.blink {
+            animation: blinker 1.5s linear infinite;
+            color: burlywood;
+            font-family: sans-serif;
+        }
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+        
+.blink1 {
+            animation: blinker 1.5s linear infinite;
+            color: azure;
+            font-family: sans-serif;
+        }
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+        
+.animate-charcter
+{
+   text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+      font-size: 50px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+
+</style>
+</head>
+
+<body>
+      
+<div class="myReference">
+           
+<div class="col-md-12">
+<center><p style="font-size:40px;color:white;margin-top:10px;">Poornima Institute of Engineering & Technology</p></center> 
+<center><p style="font-size:30px;color:white;margin-top:10px;">Department of Computer Engineering</p></center> 
+<center><p style="font-size:25px;color:white;margin-top:10px;">Summer Internship 2022 on Machine learning and Data Science</p></center> 
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2 class= "animate-charcter">IMDBs Movie Sentiment Analysis</h2>
+      <br><br>
+<h3 class= "animate-charcter"><i>Developed by Shakti Sarada Prasad</i></h3>
+    </div>
+  </div>
+</div>
+
+
+
+<br>
+</marquee>
+<!-- Main Input For Receiving Query to our ML -->
+<form action="{{ url_for('predict')}}"method="get">
+
+<div class="form-floating mb-3">
+
+<input type="text" class="form-control" id="text" name="text" step="any"  placeholder="0" required="required">
+<label for="textInput">Enter Review</label>
+</div>
+<br>
+<br>
+
+<div class="button button2">
+                <label for="inputState" class="form-label">Choose a Model </label>
+                <select id="Model" name ="Model" step = "any" class="form-select" required>
+                    <option>Logistic Regression Algorithm</option>
+                    <option>Random Forest Algorithm</option>
+                    <option>Decision Tree Algorithm</option>
+                    <option>Naive Bayes Algorithm</option>
+                </select>
+            </div>
+            
+            <br>
+
+<div class="col-12">
+                <button type="Submit" value="NB" name="NB" class="button button1">Submit</button>
+            </div>
+</form>
+<br>
+<br>
+
+<div class="my_Div" style="color:steelblue;">
+<h2>
+{{ prediction_text }}
+</h2>
+</div>
+
+</div>
+
+<div class="" style="background-color:green;" >
+<div class="clearfix">
+           
+<div class="col-md-12">
+ <center><p style="font-size:25px;color:aqua;margin-top:20px;border: 10px outset #e7bb3a;">Experiment Performed in Summer internship 2022 from 27 June to 8 August </p></center> 
+</div>
+
+</div>
+</div>
+
+<div class="myDiv">
+        <marquee class="blink1" width="80%" direction="left" scrollamount="12" height="100px">
+        <h2>
+            This model is developed by Shakti Sarada Prasad,Student of Computer Science Engineering Department
+      
+         <br>
+        
+        <p>
+            Under the Guidance of Deepak Moud Sir, Head of Computer Science Engineering Department
+            </h2>
+        </p>
+        </marquee>
+    </div>
+    <div class="col-md-12">
+              <center><h3 class="section-title" style="text-align: center;">Sponsored by</h3></center>
+            </div>
+          
+          <br>
+          <br>
+    
+      <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="card mb-3">
+            
+                    <div class="card">
+                        <img style="max-height: 200px;" src="{{ url_for('static',filename = 'image/AICTEIdeaLabFooterLogo.png')  }}"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align:center">IDEA LAB</h5>
+                            
+                        </div>
+            
+            
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-md-4">
+                <div class="card mb-3">
+            
+                    <div class="card">
+                        <img style="max-height: 200px;" src="{{ url_for('static',filename = 'image/nbanew.png')  }}"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align:center">NBA</h5>
+                            
+                        </div>
+            
+            
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-10 col-md-3">
+                <div class="card mb-3">
+
+                    <div class="card">
+                        <img style="max-height: 200px;"
+                            src="{{ url_for('static',filename = 'image/aicte-logo.png')  }}"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"; style="text-align:center">AICTE MODROB DEEP LEARNING LAB</h5>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        
+</body>
+</html>
